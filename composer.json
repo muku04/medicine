@@ -1,0 +1,12 @@
+{
+    "name": "pharmeasy/clone",
+    "description": "A simple clone of the PharmEasy website built using PHP.",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "PharmEasy\\Clone\\": "src/"
+        }
+    }
+}
