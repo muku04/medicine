@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ul>
             <li><a href="main.php">Home</a></li>	
             <li><a href="customer_dashboard">Customer</a></li>
-		    <li><a href="customer_register.php">Register</li>
+		    <li><a href="customer_register.php">Register</a></li>
         </ul>
     </nav>
 </header>
