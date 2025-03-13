@@ -69,11 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bench_number = $_POST['bench_number'];
     $side_effects = $_POST['side_effects'];
 
-    // Check if 'store_id' exists in the session
-    if (isset($_SESSION['store_id'])) {
-        $store_id = $_SESSION['store_id'];
+    // Check if 'stores_id' exists in the session
+    if (isset($_SESSION['stores_id'])) {
+        $stores_id = $_SESSION['stores_id'];
     }else{
-        $store_id = 0;
+        $stores_id = 0;
     }
 
     // Handle image upload (only if a new image is provided)
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO products (name, use_of_medicine, type, ingredients, company_name, 
     expiry_date, manufacture_date, strip, tablet, price,
     bench_number, side_effects, image, approved)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";  // Added placeholder for approved
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";  // Added placeholder for approval
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssssiiisss", // Correct the number of placeholders (14)
@@ -191,8 +191,8 @@ echo "Error: " . $stmt->error;
                 <th>ID</th>
                 <th>Name</th>
                 <th >Image</th>
-                <th>Store</th>
-                <th>Approved</th>
+                <th>stores</th>
+                <th>Approval</th>
                 <th>Action</th>
             </tr>
         </thead>

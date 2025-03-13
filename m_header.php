@@ -12,8 +12,9 @@
     <nav>
         <ul>
             <li><a href="main.php">Home</a></li>
-            <li><a href="customer_login.php">Customer</a></li>
-            <li><a href="seller_login.php">Seller</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="register_medical_store.php"> Medical store</a></li>
+            <li><a href="register_customer.php"> Customer</a></li>
             <li><a href="admin_login.php">Admin</a></li>
         </ul>
     </nav>

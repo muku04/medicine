@@ -16,7 +16,7 @@ $result = mysqli_query($conn, $query);
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Approval</th>
+                <th>Approved</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -27,11 +27,11 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['role']; ?></td>
-                    <td><?php echo $row['approval'] ? 'yes' : 'no'; ?></td>
+                    <td><?php echo $row['approved'] ? 'Yes' : 'No'; ?></td>
                     <td>
                         <form method="POST" action="approve_user.php">
                             <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>">
-                            <button type="submit"><?php echo $row['approval'] ? 'yes':'no'; ?></button>
+                            <button type="submit"><?php echo $row['approved'] ? 'Disapprove' : 'Approve'; ?></button>
                         </form>
                     </td>
                 </tr>

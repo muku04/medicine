@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <header>
     <nav>
         <ul>
-            <li><a href="main.php">Home</a></li>
+            <li><a href="logout.php">Logout</a></li>
             <li><a href="admin_header.php">Admin</a></li>
             <li><a href="admin_register.php">Register</a></li>
         </ul>

@@ -1,5 +1,6 @@
 <?php
 // customer_login.php
+include 'db.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Assume a database connection is established
@@ -7,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Fetch customer details from database
-    $query = "SELECT * FROM customers WHERE email='$email'";
+    $query = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $query);
     $customer = mysqli_fetch_assoc($result);
 

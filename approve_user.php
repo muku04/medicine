@@ -1,59 +1,21 @@
 <?php
-session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
-    header("Location: admin_login.php");
-    exit();
-}
-
-include 'admin_header.php';
 include 'db.php';
 
-if (isset($_GET['approve'])) {
-    $id = $_GET['approve'];
-    $sql = "UPDATE users SET approval=1 WHERE id=$id";
-    $conn->query($sql);
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: login.php');
+    exit;
 }
 
-if (isset($_GET['reject'])) {
-    $id = $_GET['reject'];
-    $sql = "DELETE FROM users WHERE id=$id";
-    $conn->query($sql);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = $_POST['user_id'];
+    $query = "UPDATE users SET approved = !approved WHERE id = '$user_id'";
+    if (mysqli_query($conn, $query)) {
+        $store_query = "UPDATE stores SET approved = !approved WHERE user_id = '$user_id'";
+        mysqli_query($conn, $store_query);
+        header('Location: manage_users.php');
+    } else {
+        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    }
 }
-
-$pending_users = [];
-$sql = "SELECT * FROM users WHERE approval=0";
-$result = $conn->query($sql);
-while ($row = $result->fetch_assoc()) {
-    $pending_users[] = $row;
-}
-
-include 'footer.php';
 ?>
-
-<div class="container">
-    <h1>Approve Users</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-               
-                <th>Role</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($pending_users as $user) { ?>
-                <tr>
-                    <td><?php echo $user['name']; ?></td>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['role']; ?></td>
-                    <td>
-                        <a href="approve_user.php?approve=<?php echo $user['id']; ?>">Approve</a> | 
-                        <a href="approve_user.php?reject=<?php echo $user['id']; ?>">Reject</a>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>

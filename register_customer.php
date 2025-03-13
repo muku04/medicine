@@ -3,7 +3,7 @@ include 'm_header.php';
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $role = $_POST['role'];
+    $role = 'customer';
     $name = $_POST['name'];
     $address = $_POST['address'];
     $email = $_POST['email'];
@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $branch = $_POST['branch'];
     $ifsc_code = $_POST['ifsc_code'];
 
-    $query = "INSERT INTO users (role, name, address, email, mobile_no, username, password, bank_name, account_no, branch, ifsc_code) VALUES ('$role', '$name', '$address', '$email', '$mobile_no', '$username', '$password', '$bank_name', '$account_no', '$branch', '$ifsc_code')";
+    $query = "INSERT INTO users (role, name, address, email, mobile_no, username, password, bank_name, account_no, branch, ifsc_code, approval) VALUES ('$role', '$name', '$address', '$email', '$mobile_no', '$username', '$password', '$bank_name', '$account_no', '$branch', '$ifsc_code', 0)";
     if (mysqli_query($conn, $query)) {
-        echo "User registered successfully.";
+        echo "Customer registered successfully. Please wait for admin approval.";
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($conn);
     }
@@ -25,19 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div class="container">
-    <h1>Register</h1>
-    <form method="POST" action="register.php">
-        <label for="role">Role:</label>
-        <select name="role" required>
-            <option value="customer">Customer</option>
-            
-           
-        </select>
+    <h1>Register Customer</h1>
+    <form method="POST" action="register_customer.php">
         <label for="name">Name:</label>
         <input type="text" name="name" required>
         <label for="address">Address:</label>
         <input type="text" name="address" required>
-        <label for="email">Email:</label>
+        <label for="email">E-mail:</label>
         <input type="email" name="email" required>
         <label for="mobile_no">Mobile No:</label>
         <input type="text" name="mobile_no" required>
@@ -45,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="username" required>
         <label for="password">Password:</label>
         <input type="password" name="password" required>
+
+        <h2>Bank Details</h2>
         <label for="bank_name">Bank Name:</label>
         <input type="text" name="bank_name" required>
         <label for="account_no">Account No:</label>
@@ -53,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="branch" required>
         <label for="ifsc_code">IFSC Code:</label>
         <input type="text" name="ifsc_code" required>
+        
         <button type="submit">Register</button>
     </form>
 </div>
