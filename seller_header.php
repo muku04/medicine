@@ -11,8 +11,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['users']) || $_SESSION['users']['role'] !== 'stores') {
-    header('Location: login.php');
-    exit;
+   // header('Location: seller_dashboard.php');
+   // exit;
 }
 ?>
 <header>
