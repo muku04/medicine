@@ -10,21 +10,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = "SELECT * FROM users WHERE username='$username' AND password='$password' AND approved=1";
     $result = mysqli_query($conn, $query);
+    $role = $_SESSION['user']['role'];
 
     if (mysqli_num_rows($result) == 1) {
         $_SESSION['user'] = mysqli_fetch_assoc($result);
         $role = $_SESSION['user']['role'];
+        
         if ($role == 'admin') {
             header('Location: dashboard.php');
         } elseif ($role == 'stores') {
+            echo "aman " . $role . "<br>";
             header('Location: seller_dashboard.php');
-        } else {
-            header('Location: main.php');
+        }elseif ($role == 'customer') {
+            header('Location: customer_dashboard.php');
+        }
+         else {
+          header('Location: main.php');
         }
         exit; // Ensure the script stops after redirection
     } else {
         echo "Invalid username or password, or your account is not approved yet.";
     }
+
 }
 ?>
 
