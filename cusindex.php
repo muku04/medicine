@@ -4,7 +4,6 @@ include 'db.php';
 
 $search_query = "";
 $type_filter = "";
-$disease_filter = "";
 $contain_filter = "";
 
 if (isset($_GET['search'])) {
@@ -13,15 +12,13 @@ if (isset($_GET['search'])) {
 if (isset($_GET['type'])) {
     $type_filter = $_GET['type'];
 }
-if (isset($_GET['disease'])) {
-    $disease_filter = $_GET['disease'];
-}
+
 if (isset($_GET['contain'])) {
     $contain_filter = $_GET['contain'];
 }
 
 // Fetch all approved products or search results
-$query = "SELECT * FROM products WHERE approved=1 AND name LIKE '%$search_query%' AND type LIKE '%$type_filter%' AND use_of_medicine LIKE '%$disease_filter%' AND ingredients LIKE '%$contain_filter%'";
+$query = "SELECT * FROM products WHERE approved=1 AND name LIKE '%$search_query%' AND type LIKE '%$type_filter%' AND use_of_medicine AND ingredients LIKE '%$contain_filter%'";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -30,7 +27,6 @@ $result = mysqli_query($conn, $query);
     <form method="GET" action="index.php">
         <input type="text" name="search" placeholder="Search for medicines..." value="<?php echo htmlspecialchars($search_query); ?>">
         <input type="text" name="type" placeholder="Type..." value="<?php echo htmlspecialchars($type_filter); ?>">
-        <input type="text" name="disease" placeholder="Disease..." value="<?php echo htmlspecialchars($disease_filter); ?>">
         <input type="text" name="contain" placeholder="Contain..." value="<?php echo htmlspecialchars($contain_filter); ?>">
         <button type="submit">Search</button>
     </form>
