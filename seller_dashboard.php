@@ -1,18 +1,10 @@
 <?php
 
-session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'stores') {
-    header("Location: login.php");
-    exit();
-}
-
-
 include 'seller_header.php';
 include 'db.php';
 
-
 // Fetch seller's medicines
-$seller_id = $_SESSION['users']['id'];
+$seller_id = $_SESSION['user']['id']; // Correct session key to get the user ID
 $query = "SELECT * FROM products WHERE store_id='$seller_id'";
 $result = mysqli_query($conn, $query);
 ?>
@@ -25,11 +17,8 @@ $result = mysqli_query($conn, $query);
                 <h2><?php echo $row['name']; ?></h2>
                 <p><?php echo $row['use_of_medicine']; ?></p>
                 <p>Price: <?php echo $row['price']; ?></p>
-				 <link rel="stylesheet" href="style.css">
-                <script src="script.js" defer></script>
                 <img src="<?php echo $row['image']; ?>" alt="Product Image" width="100">
                 <br>
-	
                 <a href="seller_addmedicine.php?id=<?php echo $row['id']; ?>">View Details</a>
             </div>
         <?php } ?>
