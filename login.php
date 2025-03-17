@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($role == 'admin') {
             header('Location: dashboard.php');
         } elseif ($role == 'stores') {
-            echo "aman " . $role . "<br>";
             header('Location: seller_dashboard.php');
         }elseif ($role == 'customer') {
             header('Location: customer_dashboard.php');

@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+if (!isset($_SESSION['username']) || $_SESSION['role'] != 'stores') {
+    header("Location: login.php");
+    exit();
+}
+
+
 include 'seller_header.php';
 include 'db.php';
 
