@@ -19,7 +19,7 @@ if (!isset($_SESSION['users']) || $_SESSION['users']['role'] !== 'stores') {
     <nav>
         <ul>
             <li><a href="seller_dashboard.php">Dashboard</a></li>
-            <li><a href="seller_addmedicine.php">Add Medicine</a></li>
+            <li><a href="seller_addmedicine.php">Manage Medicine</a></li>
             <li><a href="sellermanage_orders.php">Manage Orders</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>

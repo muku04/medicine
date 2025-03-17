@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($customer && password_verify($password, $customer['password'])) {
         $_SESSION['customer_id'] = $customer['id'];
-        header("Location: customer_dashboard.php");
+        header("Location:cusindex.php");
         exit();
     } else {
         $error = "Invalid email or password.";
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav>
         <ul>
             <li><a href="main.php">Home</a></li>	
-            <li><a href="customer_dashboard">Customer</a></li>
+            <li><a href="customer_dashboard.php">Customer</a></li>
 		    <li><a href="customer_register.php">Register</a></li>
         </ul>
     </nav>
