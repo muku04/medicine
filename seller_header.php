@@ -15,8 +15,8 @@ if (!isset($_SESSION['user']['username']) || $_SESSION['user']['role'] != 'store
     header("Location: login_seller.php");
     exit();
 }
-
 ?>
+
 <header>
     <nav>
         <ul>
@@ -24,6 +24,11 @@ if (!isset($_SESSION['user']['username']) || $_SESSION['user']['role'] != 'store
             <li><a href="seller_addmedicine.php">Manage Medicine</a></li>
             <li><a href="sellermanage_orders.php">Manage Orders</a></li>
             <li><a href="logout.php">Logout</a></li>
+            <li><font color="black"><span>Welcome, <?php echo $_SESSION['user']['username']; ?>!</span> </font></li>
         </ul>
     </nav>
+    <div class="user-info">
+            </div>
 </header>
+</body>
+</html>
