@@ -4,7 +4,7 @@ include 'db.php';
 
 session_start();
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
-    header('Location: customer_login.php');
+    header('Location: customer_login_seller.php');
     exit;
 }
 

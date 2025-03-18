@@ -12,7 +12,7 @@
 session_start();
 // Use the correct session variable to check if the user is logged in and has the 'stores' role
 if (!isset($_SESSION['user']['username']) || $_SESSION['user']['role'] != 'stores') {
-    header("Location: login.php");
+    header("Location: login_seller.php");
     exit();
 }
 
