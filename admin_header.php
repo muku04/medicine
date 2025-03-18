@@ -1,3 +1,13 @@
+<?php
+session_start(); // Start session at the top of the file
+
+// Ensure the user is logged in and has the 'admin' role
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') {
+    header("Location: admin_login.php");
+    exit(); // Stop execution after redirect
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +27,9 @@
             <li><a href="manage_orders.php">Manage Orders</a></li>
             <li><a href="details.php">Notifications</a></li>
             <li><a href="logout.php">Logout</a></li>
+            <li><font color="black"><span>Welcome, <?php echo $_SESSION['user']['username']; ?>!</span> </font></li>
         </ul>
     </nav>
 </header>
+</body>
+</html>
