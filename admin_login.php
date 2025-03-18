@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Invalid password.";
         }
     } else {
-        echo "No admin found with that username.";
+    echo '<br> <br> <br> <div style="color: red; text-align: center; font-size: 18px;">No admin found with that username..</div>';
     }
 }
 
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
     </nav>
 </header>
+<center> 
     <h2>Admin Login</h2>
     <form method="post">
         <label for="username">Username:</label>
@@ -52,5 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password" name="password" required><br>
         <button type="submit">Login</button>
     </form>
+    </center>
+
 </body>
 </html>
