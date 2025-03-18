@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "SELECT * FROM users WHERE username='$username' AND password='$password' AND approved=1 AND role='stores'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
-        $role = $_SESSION['user']['role'];
 
         $_SESSION['user'] = mysqli_fetch_assoc($result);
         $role = $_SESSION['user']['role'];
