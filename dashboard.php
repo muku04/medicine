@@ -1,4 +1,5 @@
 <?php
+
 include 'admin_header.php';
 include 'db.php';
 
@@ -22,23 +23,30 @@ $notification_count = mysqli_fetch_assoc($notification_count_result)['notificati
 <div class="container">
     <h1>Admin Dashboard</h1>
     <div class="dashboard-stats">
-        <div class="stat-item">
-            <h2>Users</h2>
+    <a href ="manage_users.php" class="stat-item" >
+        <div >
+            <h2>  Users </h2>
             <p><?php echo $user_count; ?></p>
         </div>
-        <div class="stat-item">
+    </a>
+    <a href ="manage_products.php" class="stat-item" >
+        <div >
             <h2>Products</h2>
             <p><?php echo $product_count; ?></p>
         </div>
-        <div class="stat-item">
+    </a>   
+    <a href ="manage_orders.php" class="stat-item" >
+        <div >
             <h2>Orders</h2>
             <p><?php echo $order_count; ?></p>
         </div>
-        <div class="stat-item">
+    </a>
+    <a href ="details.php" class="stat-item" >
+        <div >
             <h2>Notifications</h2>
             <p><?php echo $notification_count; ?></p>
         </div>
-		
+    </a>	
     </div>
 </div>
 

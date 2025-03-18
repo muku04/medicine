@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
-    header("Location: admin_login.php");
-    exit();
-}
 
 include 'admin_header.php';
 include 'db.php';
@@ -131,11 +126,12 @@ echo "Error: " . $stmt->error;
 }
 ?>
 
-
+<!-- 
 <div class="container">
     <h1>Manage Products</h1>
     <form action="manage_products.php<?php echo isset($_GET['id']) ? '?id=' . $_GET['id'] : ''; ?>" method="POST" enctype="multipart/form-data">
-        <label for="name">Name:</label>
+    
+    <label for="name">Name:</label>
         <input type="text" name="name" value="<?php echo $product['name'] ?? ''; ?>" required>
 
         <label for="use_of_medicine">Use of Medicine:</label>
@@ -183,6 +179,7 @@ echo "Error: " . $stmt->error;
 
         <button type="submit"><?php echo isset($_GET['id']) ? 'Update Product' : 'Add Product'; ?></button>
     </form>
+ -->
 
     <h2>Product List</h2>
     <table class="table">

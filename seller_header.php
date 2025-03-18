@@ -10,18 +10,25 @@
 <body>
 <?php
 session_start();
-if (!isset($_SESSION['users']) || $_SESSION['users']['role'] !== 'stores') {
-   // header('Location: seller_dashboard.php');
-   // exit;
+// Use the correct session variable to check if the user is logged in and has the 'stores' role
+if (!isset($_SESSION['user']['username']) || $_SESSION['user']['role'] != 'stores') {
+    header("Location: login_seller.php");
+    exit();
 }
 ?>
+
 <header>
     <nav>
         <ul>
             <li><a href="seller_dashboard.php">Dashboard</a></li>
-            <li><a href="seller_addmedicine.php">Add Medicine</a></li>
+            <li><a href="seller_addmedicine.php">Manage Medicine</a></li>
             <li><a href="sellermanage_orders.php">Manage Orders</a></li>
             <li><a href="logout.php">Logout</a></li>
+            <li><font color="black"><span>Welcome, <?php echo $_SESSION['user']['username']; ?>!</span> </font></li>
         </ul>
     </nav>
+    <div class="user-info">
+            </div>
 </header>
+</body>
+</html>

@@ -12,10 +12,11 @@
     <nav>
         <ul>
             <li><a href="main.php">Home</a></li>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="login_seller.php">Seller_Login</a></li>
             <li><a href="register_medical_store.php"> Medical store</a></li>
             <li><a href="register_customer.php"> Customer</a></li>
-            <li><a href="admin_login.php">Admin</a></li>
+            <li><a href="login_customer.php"> Customer_Login</a></li>
+            <li><a href="admin_login.php">Admin Login</a></li>
         </ul>
     </nav>
 </header>
