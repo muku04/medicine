@@ -15,6 +15,9 @@ $result = mysqli_query($conn, $query);
                 <h2><?php echo $row['name']; ?></h2>
                 <p><?php echo $row['use_of_medicine']; ?></p>
                 <p>Price: <?php echo $row['price']; ?></p>
+                <br> 
+                <img src="<?php echo $row['image']; ?>" alt="Product Image" width="100">
+                <br>
 				 <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 	

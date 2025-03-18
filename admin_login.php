@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $row['role'];
-            header("Location: admin_header.php");
+            header("Location: dashboard.php");
         } else {
             echo "Invalid password.";
         }
@@ -36,10 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <header>
     <nav>
-        <ul>
+        <ul><!--
             <li><a href="logout.php">Logout</a></li>
             <li><a href="admin_header.php">Admin</a></li>
             <li><a href="admin_register.php">Register</a></li>
+-->
         </ul>
     </nav>
 </header>

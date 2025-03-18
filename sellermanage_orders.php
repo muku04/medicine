@@ -2,22 +2,22 @@
 include 'seller_header.php';
 include 'db.php';
 
-session_start(); // Start the session if it's not already started
+//session_start(); // Start the session if it's not already started
 
 // Check if the seller is logged in
-if (!isset($_SESSION['users']) || $_SESSION['users']['role'] !== 'stores') {
-    header('Location: login.php');
-    exit;
-}
+//if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'store') {
+    //header('Location: login.php');
+   // exit;
+//}
 
 // Fetch seller's orders
-$seller_id = $_SESSION['users']['id'];
+$seller_id = $_SESSION['user']['id'];
 $query = "SELECT orders.id, users.name AS customer, orders.total, orders.status, orders.payment_status, orders.created_at 
           FROM orders 
           JOIN users ON orders.user_id = users.id 
           JOIN order_items ON orders.id = order_items.order_id 
           JOIN products ON order_items.product_id = products.id 
-          WHERE products.stores_id = '$seller_id' 
+          WHERE products.store_id = '$seller_id' 
           GROUP BY orders.id";
 $result = mysqli_query($conn, $query);
 

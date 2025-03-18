@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $branch = $_POST['branch'];
     $ifsc_code = $_POST['ifsc_code'];
 
-    $query = "INSERT INTO users (role, name, address, email, mobile_no, username, password, bank_name, account_no, branch, ifsc_code, approval) VALUES ('$role', '$name', '$address', '$email', '$mobile_no', '$username', '$password', '$bank_name', '$account_no', '$branch', '$ifsc_code', 0)";
+    $query = "INSERT INTO users (role, name, address, email, mobile_no, username, password, bank_name, account_no, branch, ifsc_code, approveds) VALUES ('$role', '$name', '$address', '$email', '$mobile_no', '$username', '$password', '$bank_name', '$account_no', '$branch', '$ifsc_code', 0)";
     if (mysqli_query($conn, $query)) {
         echo "Customer registered successfully. Please wait for admin approval.";
     } else {
