@@ -11,7 +11,7 @@
 <header>
     <nav>
         <ul>
-            <li><a href="main.php">Home</a></li>
+            <li><a href="main1.php">Home</a></li>
             <li><a href="login_seller.php">Seller_Login</a></li>
             <li><a href="register_medical_store.php"> Medical store</a></li>
             <li><a href="register_customer.php"> Customer</a></li>

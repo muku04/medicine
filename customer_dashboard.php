@@ -1,6 +1,5 @@
 <?php
  include 'customer_header.php';
- //include 'm_header.php';
  include 'db.php';
 
 //session_start();
