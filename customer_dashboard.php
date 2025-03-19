@@ -1,13 +1,13 @@
 <?php
- //include 'cusindex.php';
- include 'm_header.php';
+ include 'customer_header.php';
+ //include 'm_header.php';
  include 'db.php';
 
-session_start();
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
-    header('Location: cusindex.php');
-    exit;
-}
+//session_start();
+//if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
+  //  header('Location: cusindex.php');
+  //  exit;
+//}
 
 $search_query = "";
 $type_filter = "";

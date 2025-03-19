@@ -13,7 +13,7 @@
 <header>
     <nav>
         <ul>
-            <li><a href="main.php">Home</a></li>
+            <li><a href="seller_dashboard.php">Dashboard</a></li>
 
             
         </ul>
