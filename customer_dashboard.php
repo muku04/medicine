@@ -10,7 +10,7 @@
 
 $search_query = "";
 $type_filter = "";
-$contain_filter = "";
+
 $description = "";
 
 if (isset($_GET['search'])) {
@@ -23,12 +23,9 @@ if (isset($_GET['type'])) {
 if (isset($_GET['description'])) {
     $description = $_GET['description'];
 }
-if (isset($_GET['contain'])) {
-    $contain_filter = $_GET['contain'];
-}
 
 // Fetch all approved products or search results
-$query = "SELECT * FROM products WHERE approved=1 AND name LIKE '%$search_query%' AND use_of_medicine LIKE '%$description%' AND type LIKE '%$type_filter%' AND ingredients LIKE '%$contain_filter%'";
+$query = "SELECT * FROM products WHERE approved=1 AND name LIKE '%$search_query%' AND use_of_medicine LIKE '%$description%' AND type LIKE '%$type_filter%' ";
 
 $result = mysqli_query($conn, $query);
 ?>
@@ -60,7 +57,7 @@ $result = mysqli_query($conn, $query);
         </select>
 
         <input type="text" name="description" placeholder="Description..." value="<?php echo htmlspecialchars($description); ?>">
-        <input type="text" name="contain" placeholder="Ingredients..." value="<?php echo htmlspecialchars($contain_filter); ?>">
+       
         <button type="submit">Search</button>
     </form>
     

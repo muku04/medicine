@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $query);
                 <th>Total</th>
                 <th>Status</th>
                 <th>Payment Status</th>
-                <th>Action</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -43,17 +43,7 @@ $result = mysqli_query($conn, $query);
                     <td><?php echo $row['total']; ?></td>
                     <td><?php echo $row['status']; ?></td>
                     <td><?php echo $row['payment_status']; ?></td>
-                    <td>
-                        <form method="POST" action="update_order_status.php">
-                            <input type="hidden" name="order_id" value="<?php echo $row['id']; ?>">
-                            <select name="status">
-                                <option value="pending" <?php echo $row['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
-                                <option value="dispatched" <?php echo $row['status'] == 'dispatched' ? 'selected' : ''; ?>>Dispatched</option>
-                                <option value="delivered" <?php echo $row['status'] == 'delivered' ? 'selected' : ''; ?>>Delivered</option>
-                            </select>
-                            <button type="submit">Update</button>
-                        </form>
-                    </td>
+                    
                 </tr>
             <?php } ?>
         </tbody>
