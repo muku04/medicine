@@ -66,7 +66,17 @@ $result = mysqli_query($conn, $query);
       </div>
     </div>
 
-
+    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+              <a href="#" class="h-100">
+                <h5>Buy <br> A Gift Card</h5>
+                <p>
+                  Amet sit amet dolor
+                  <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+                </p>
+              </a>
+            </div>
+          </div>
 
     <div class="site-wrap">
         <div class="site-navbar py-2">

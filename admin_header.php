@@ -21,7 +21,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') {
 <header>
     <nav>
         <ul>
-		  <li><a href="main.php">Home</a></li>
+		  <li><a href="main1.php">Home</a></li>
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="manage_users.php">Manage Users</a></li>
             <li><a href="manage_products.php">Manage Products</a></li>

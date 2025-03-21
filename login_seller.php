@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } elseif ($role == 'customer') {
             header('Location: customer_dashboard.php');
         } else {
-            header('Location: main.php');
+            header('Location: main1.php');
         }
         exit; // Ensure the script stops after redirection
     } else {

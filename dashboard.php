@@ -1,5 +1,4 @@
 <?php
-
 include 'admin_header.php';
 include 'db.php';
 
@@ -19,35 +18,70 @@ $product_count = mysqli_fetch_assoc($product_count_result)['product_count'];
 $order_count = mysqli_fetch_assoc($order_count_result)['order_count'];
 $notification_count = mysqli_fetch_assoc($notification_count_result)['notification_count'];
 ?>
+<head>
+  <title>Admin Register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
 <div class="container">
+    <br> 
     <h1>Admin Dashboard</h1>
-    <div class="dashboard-stats">
-    <a href ="manage_users.php" class="stat-item" >
-        <div >
-            <h2>  Users </h2>
-            <p><?php echo $user_count; ?></p>
+
+    <br><br>
+
+    <!-- Start of the row -->
+    <div class="row">
+        <!-- User Stats -->
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+                <a href="manage_users.php" class="h-100">
+                    <h5>Users</h5><br>
+                    <p><?php echo $user_count; ?></p>
+                </a>
+            </div>
         </div>
-    </a>
-    <a href ="manage_products.php" class="stat-item" >
-        <div >
-            <h2>Products</h2>
-            <p><?php echo $product_count; ?></p>
+
+        <!-- Product Stats -->
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+                <a href="manage_products.php" class="h-100">
+                    <h5>Products</h5><br>
+                    <p><?php echo $product_count; ?></p>
+                </a>
+            </div>
         </div>
-    </a>   
-    <a href ="manage_orders.php" class="stat-item" >
-        <div >
-            <h2>Orders</h2>
-            <p><?php echo $order_count; ?></p>
+
+        <!-- Order Stats -->
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+                <a href="manage_orders.php" class="h-100">
+                    <h5>Orders</h5><br>
+                    <p><?php echo $order_count; ?></p>
+                </a>
+            </div>
         </div>
-    </a>
-    <a href ="details.php" class="stat-item" >
-        <div >
-            <h2>Notifications</h2>
-            <p><?php echo $notification_count; ?></p>
+
+        <!-- Notification Stats -->
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="banner-wrap bg-warning h-100">
+                <a href="details.php" class="h-100">
+                    <h5>Notifications</h5><br>
+                    <p><?php echo $notification_count; ?></p>
+                </a>
+            </div>
         </div>
-    </a>	
     </div>
+    <!-- End of the row -->
 </div>
 
 <?php

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: customer_dashboard.php');
         }
          else {
-          header('Location: main.php');
+          header('Location: main1.php');
         }
         exit; // Ensure the script stops after redirection
     } else {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <center> 
 <div class="container">
-<br> <br> 
+<br>
     <h1>Customer - Login</h1>
     <form method="POST" action="login_customer.php">
         <label for="username">Username:</label>

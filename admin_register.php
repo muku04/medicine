@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-include 'footer.php';
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +38,8 @@ include 'footer.php';
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
+    <div class="container">    
     <h2>Admin Register</h2>
     <form method="post">
         <label for="name">Name:</label>
@@ -54,5 +55,12 @@ include 'footer.php';
         <input type="password" id="password" name="password" required><br>
         <button type="submit">Register</button>
     </form>
+</div>
 </body>
 </html>
+
+<?php
+
+include 'footer.php';
+
+?>
