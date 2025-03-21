@@ -1,8 +1,7 @@
 <?php
-include 'm_header1.php';
+include 'customer_header.php';
 include 'db.php';
 
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product_id = $_POST['product_id'];

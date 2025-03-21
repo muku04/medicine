@@ -1,5 +1,5 @@
 <?php
-include 'm_header1.php';
+include 'customer_header.php';
 include 'db.php';
 
 $search_query = "";

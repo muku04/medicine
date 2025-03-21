@@ -1,12 +1,34 @@
 <?php
-include 'header.php';
+include 'customer_header.php';
 include 'db.php';
 
-session_start();
+?>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<?php
+
+// Check if the user is logged in and has a 'customer' role
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
     header('Location: login_seller.php');
     exit;
+}
+
+// Check if cart is set and is not empty
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    echo "<center>No items in the cart.</center>";
+    exit; // Stop further execution if cart is empty
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -33,12 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         unset($_SESSION['cart']);
-        echo "Order placed successfully.";
+        echo "<center>Order placed successfully.</center>";
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($conn);
     }
 }
 ?>
+
 
 <div class="container">
     <h1>Checkout</h1>
