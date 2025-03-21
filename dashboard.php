@@ -17,6 +17,10 @@ $user_count = mysqli_fetch_assoc($user_count_result)['user_count'];
 $product_count = mysqli_fetch_assoc($product_count_result)['product_count'];
 $order_count = mysqli_fetch_assoc($order_count_result)['order_count'];
 $notification_count = mysqli_fetch_assoc($notification_count_result)['notification_count'];
+
+$query = "SELECT * FROM products";
+$result = mysqli_query($conn, $query);
+
 ?>
 <head>
   <title>Admin Register</title>
@@ -33,6 +37,13 @@ $notification_count = mysqli_fetch_assoc($notification_count_result)['notificati
   <link rel="stylesheet" href="css/style.css">
 </head>
 
+
+<body>
+
+<br>  
+      <div class="container">
+        <div class="row align-items-stretch">
+          
 <div class="container">
     <br> 
     <h1>Admin Dashboard</h1>
@@ -83,6 +94,11 @@ $notification_count = mysqli_fetch_assoc($notification_count_result)['notificati
     </div>
     <!-- End of the row -->
 </div>
+          
+        </div>
+      </div>
+
+</body>
 
 <?php
 include 'footer.php';
