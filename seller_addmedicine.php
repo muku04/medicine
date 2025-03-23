@@ -203,7 +203,6 @@ echo "Error: " . $stmt->error;
                 <th>ID</th>
                 <th>Name</th>
                 <th >Image</th>
-                <th>stores</th>
                 <th>Approval</th>
                 <th>Edit</th>
                 
@@ -218,7 +217,6 @@ echo "Error: " . $stmt->error;
         echo "<td>" . $row['id'] . "</td>";
         echo "<td>" . $row['name'] . "</td>";
         echo "<td><img src='" . $row['image'] . "' alt='" . $row['name'] . "' height='100' width='50' ></td>";
-        echo "<td>" . $row['store_id'] . "</td>";
         echo "<td>" . ($row['approved'] ? 'Yes' : 'No') . "</td>";
         echo '<td><a href="seller_addmedicine.php?id=' . $row['id'] . '">Edit Details</a></td>';
         echo "</tr>";
