@@ -1,7 +1,6 @@
 <?php
 include 'customer_header.php';
 include 'db.php';
-
 ?>
 
 <head>
@@ -18,7 +17,6 @@ include 'db.php';
 </head>
 
 <?php
-
 // Check if the user is logged in and has a 'customer' role
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
     header('Location: login_seller.php');
@@ -31,20 +29,30 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     exit; // Stop further execution if cart is empty
 }
 
+// Initialize total cost
+$total = 0;
+$products = [];
+
+foreach ($_SESSION['cart'] as $product_id => $quantity) {
+    $query = "SELECT * FROM products WHERE id='$product_id'";
+    $result = mysqli_query($conn, $query);
+    if ($row = mysqli_fetch_assoc($result)) {
+        $row['quantity'] = $quantity;
+        $products[] = $row;
+        $total += $row['price'] * $quantity;
+    }
+}
+
+// Place order
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user']['id'];
-    $total = 0;
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        $query = "SELECT * FROM products WHERE id='$product_id'";
-        $result = mysqli_query($conn, $query);
-        if ($row = mysqli_fetch_assoc($result)) {
-            $total += $row['price'] * $quantity;
-        }
-    }
 
+    // Insert the order into the orders table
     $query = "INSERT INTO orders (user_id, total, status, payment_status) VALUES ('$user_id', '$total', 'pending', 'pending')";
     if (mysqli_query($conn, $query)) {
         $order_id = mysqli_insert_id($conn);
+
+        // Insert the order items into the order_items table
         foreach ($_SESSION['cart'] as $product_id => $quantity) {
             $query = "SELECT * FROM products WHERE id='$product_id'";
             $result = mysqli_query($conn, $query);
@@ -54,20 +62,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 mysqli_query($conn, $query);
             }
         }
+
+        // Clear the cart after the order is placed
         unset($_SESSION['cart']);
-        echo "<center>Order placed successfully.</center>";
+        echo "<center>Order placed successfully. You will be redirected shortly.</center>";
+        header("refresh:3;url=customer_dashboard.php"); // Redirect after 3 seconds
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($conn);
     }
 }
 ?>
 
-
 <div class="container">
     <h1>Checkout</h1>
-    <form method="POST" action="checkout.php">
-        <button type="submit">Place Order</button>
-    </form>
+
+    <h2>Your Cart</h2>
+    <?php if (!empty($products)) { ?>
+        <div class="cart-items">
+            <?php foreach ($products as $product) { ?>
+                <div class="cart-item" style="display: flex; align-items: center; border-bottom: 1px solid #ddd; padding: 10px;">
+                    <img src="<?php echo $product['image']; ?>" alt="Product Image" style="width: 100px; height: 100px; object-fit: contain; margin-right: 20px;">
+                    <div>
+                        <h3><?php echo $product['name']; ?></h3>
+                        <p>Price: ₹<?php echo $product['price']; ?></p>
+                        <p>Quantity: <?php echo $product['quantity']; ?></p>
+                        <p>Total: ₹<?php echo $product['price'] * $product['quantity']; ?></p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+        <hr>
+        <h3>Total Amount: ₹<?php echo $total; ?></h3>
+        
+        <!-- Link to navigate back to the cart page -->
+        
+        <br>
+        <form method="POST" action="checkout.php">
+        <a href="cart.php" class="btn btn-secondary">Back to Cart</a>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    <?php } else { ?>
+        <p>Your cart is empty. Please add items to your cart before proceeding.</p><br>
+    <?php } ?>
 </div>
 
 <?php
