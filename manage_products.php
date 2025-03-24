@@ -149,7 +149,7 @@ echo "Error: " . $stmt->error;
                 <th>ID</th>
                 <th>Name</th>
                 <th >Image</th>
-                <th>stores</th>
+             
                 <th>Approval</th>
                 <th>Action</th>
             </tr>
@@ -163,7 +163,7 @@ echo "Error: " . $stmt->error;
                 echo "<td>" . $row['id'] . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td><img src='" . $row['image'] . "' alt='" . $row['name'] . "' height='100' width='50' ></td>";
-                echo "<td>" . $row['store_id'] . "</td>";
+                
                 echo "<td>" . ($row['approved'] ? 'Yes' : 'No') . "</td>";
                 echo "<td>
                         <form method='POST' action='approve_product.php'>

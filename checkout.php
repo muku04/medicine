@@ -19,7 +19,7 @@ include 'db.php';
 <?php
 // Check if the user is logged in and has a 'customer' role
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'customer') {
-    header('Location: login_seller.php');
+    header('Location: login_customer.php');
     exit;
 }
 
@@ -46,11 +46,12 @@ foreach ($_SESSION['cart'] as $product_id => $quantity) {
 // Place order
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user']['id'];
-
+    $user_address = $_SESSION['user']['address'];
     // Insert the order into the orders table
-    $query = "INSERT INTO orders (user_id, total, status, payment_status) VALUES ('$user_id', '$total', 'pending', 'pending')";
+    $query = "INSERT INTO orders (user_id, total, address,status, payment_status) VALUES ('$user_id', '$total', '$user_address','pending', 'pending')";
     if (mysqli_query($conn, $query)) {
         $order_id = mysqli_insert_id($conn);
+		
 
         // Insert the order items into the order_items table
         foreach ($_SESSION['cart'] as $product_id => $quantity) {

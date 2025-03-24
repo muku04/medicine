@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $seller_id = $_SESSION['user']['id'];
-$query = "SELECT orders.id, users.name AS customer, orders.total, orders.status, orders.payment_status, orders.created_at FROM orders JOIN users ON orders.user_id = users.id";
+$query = "SELECT orders.id, users.name AS customer,orders.address, orders.total, orders.status, orders.payment_status, orders.created_at FROM orders JOIN users ON orders.user_id = users.id";
 $result = mysqli_query($conn, $query);
 
 
@@ -55,6 +55,7 @@ $result = mysqli_query($conn, $query);
             <tr>
                 <th>Order ID</th>
                 <th>Customer</th>
+				<th>Address</th>
                 <th>Total</th>
                 <th>Status</th>
                 <th>Payment Status</th>
@@ -66,6 +67,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <td><?php echo htmlspecialchars($row['id']); ?></td>
                     <td><?php echo htmlspecialchars($row['customer']); ?></td>
+					<td><?php echo htmlspecialchars($row['address']); ?></td>
                     <td><?php echo htmlspecialchars($row['total']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td><?php echo htmlspecialchars($row['payment_status']); ?></td>

@@ -56,8 +56,8 @@ $result = mysqli_query($conn, $query);
 
     <div class="product-list">
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <div class="product-item" style="display: flex; align-items: center; border-bottom: 1px solid #ddd; padding: 10px;">
-              <br>  <img src="<?php echo $row['image']; ?>" alt="Product Image" style="width: 150px; height: 150px; object-fit: contain; margin-right: 20px;">
+            <div class="product-item" style="display: flex; align-items: right; border-bottom: 1px solid #ddd; padding: 10px;">
+              <br>  <img src="<?php echo $row['image']; ?>" alt="Product Image" style="width: 150px; height: 150px; object-fit: contain;  margin-left: 60px;">
                 <div>
                     <h2><?php echo $row['name']; ?></h2>
                     <p><?php echo $row['use_of_medicine']; ?></p>

@@ -4,8 +4,10 @@ include 'admin_header.php';
 include 'db.php';
 
 // Fetch orders
-$query = "SELECT orders.id, users.name AS customer, orders.total, orders.status, orders.payment_status, orders.created_at FROM orders JOIN users ON orders.user_id = users.id";
+$query = "SELECT orders.id,orders.address, users.name AS customer, orders.total, orders.status, orders.payment_status, orders.created_at FROM orders JOIN users ON orders.user_id = users.id";
+//$query= "SELECT * FROM orders ";
 $result = mysqli_query($conn, $query);
+
 ?>
 <head>
   <title>Admin Register</title>
@@ -29,6 +31,7 @@ $result = mysqli_query($conn, $query);
             <tr>
                 <th>ID</th>
                 <th>Customer</th>
+			    <th>Address</th>
                 <th>Total</th>
                 <th>Status</th>
                 <th>Payment Status</th>
@@ -40,6 +43,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['customer']; ?></td>
+					<td><?php echo $row['address']; ?></td>
                     <td><?php echo $row['total']; ?></td>
                     <td><?php echo $row['status']; ?></td>
                     <td><?php echo $row['payment_status']; ?></td>
