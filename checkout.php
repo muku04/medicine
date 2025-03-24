@@ -14,6 +14,9 @@ include 'db.php';
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </head>
 
 <?php
@@ -47,11 +50,13 @@ foreach ($_SESSION['cart'] as $product_id => $quantity) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user']['id'];
     $user_address = $_SESSION['user']['address'];
+
     // Insert the order into the orders table
-    $query = "INSERT INTO orders (user_id, total, address,status, payment_status) VALUES ('$user_id', '$total', '$user_address','pending', 'pending')";
+    $query = "INSERT INTO orders (user_id, total,  address, status, payment_status) 
+              VALUES ('$user_id', '$total', '$user_address', 'pending', 'pending')";
+    
     if (mysqli_query($conn, $query)) {
         $order_id = mysqli_insert_id($conn);
-		
 
         // Insert the order items into the order_items table
         foreach ($_SESSION['cart'] as $product_id => $quantity) {
@@ -59,14 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = mysqli_query($conn, $query);
             if ($row = mysqli_fetch_assoc($result)) {
                 $price = $row['price'];
-                $query = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ('$order_id', '$product_id', '$quantity', '$price')";
+                $query = "INSERT INTO order_items (order_id, product_id, quantity, price) 
+                          VALUES ('$order_id', '$product_id', '$quantity', '$price')";
                 mysqli_query($conn, $query);
             }
         }
 
         // Clear the cart after the order is placed
         unset($_SESSION['cart']);
-        echo "<center>Order placed successfully. You will be redirected shortly.</center>";
+        echo "<center><h1><font color=\"green\">Order placed successfully. You will be redirected shortly.</font></h1></center>";
         header("refresh:3;url=customer_dashboard.php"); // Redirect after 3 seconds
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($conn);
@@ -95,14 +101,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <hr>
         <h3>Total Amount: ₹<?php echo $total; ?></h3>
-        
-        <!-- Link to navigate back to the cart page -->
-        
+
         <br>
-        <form method="POST" action="checkout.php">
         <a href="cart.php" class="btn btn-secondary">Back to Cart</a>
-        <button type="submit" class="btn btn-primary">Place Order</button>
-        </form>
+
+        <!-- Payment Dropdown -->
+        <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#paymentDetails" aria-expanded="false" aria-controls="paymentDetails">
+            Enter Payment Details
+        </button>
+
+        <div class="collapse" id="paymentDetails">
+            <form method="POST" action="checkout.php">
+                <h4>Payment Details</h4>
+                <div class="form-group">
+                    <label for="card_number">Card Number:</label>
+                    <input type="text" pattern="\d{1,16}" maxlength="16" id="card_number" placeholder="Enter card number" name="card_number" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry_date">Expiry Date (MM/YY):</label>
+                    <input type="text" id="expiry_date" name="expiry_date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" name="submit_payment">Make Payment & Place Order</button>
+            </form>
+        </div>
+
+        <br>
+
     <?php } else { ?>
         <p>Your cart is empty. Please add items to your cart before proceeding.</p><br>
     <?php } ?>
